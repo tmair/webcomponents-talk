@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Shadow DOM</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../../css/normalize.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <style>
+        em {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div id="card"><em>Thomas Mair</em></div>
+
+
+<template id="card-template">
+    <style>
+        .card {
+            margin: 0 50px 50px 0;
+            padding: 50px;
+            background: url('leaf.png') 473px 195px no-repeat;
+            background-size: 100px;
+            width: 500px;
+            height: 300px;
+        }
+
+        .content {
+            border: 1px solid #cccccc;
+            height: 100%;
+            margin-left: 20px;
+            padding: 30px;
+            background: linear-gradient(
+                    to right,
+                    #f6ba52,
+                    #f6ba52 20px,
+                    #ffd180 2px,
+                    transparent 2px
+            );
+            box-sizing: border-box;
+        }
+    </style>
+
+    <div class="card">
+        <div class="content">
+            <content></content>
+        </div>
+    </div>
+</template>
+
+<script>
+    var host = document.querySelector('#card');
+    var root = host.createShadowRoot();
+    var template = document.querySelector('#card-template');
+
+    root.appendChild(template.content.cloneNode(true));
+
+</script>
+
+</body>
+</html>

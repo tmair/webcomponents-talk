@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>HTML Import</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../../css/normalize.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+    <link rel="import" href="progress-bar.html">
+</head>
+<body>
+<progress-bar value="20"><em>Loading...</em></progress-bar>
+<button id="start">Start</button>
+<button id="reset">Reset</button>
+
+<script>
+    document.querySelector('#start').addEventListener('click', function() {
+        var i = 0;
+        var element = document.querySelector('progress-bar');
+
+        function progress() {
+
+            i++;
+            window.setTimeout(function () {
+                element.value = i;
+                element.innerText = 'Fortschritt: ' + i + '%';
+                if (i < 100) {
+                    progress();
+                }
+            }, 100);
+
+        }
+
+        progress();
+    });
+
+    document.querySelector('#reset').addEventListener('click', function() {
+       document.querySelector('progress-bar').value = 0;
+    });
+
+
+</script>
+
+</body>
+</html>

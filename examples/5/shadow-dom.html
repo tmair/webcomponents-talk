@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>Shadow DOM</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../../css/normalize.css">
+    <link rel="stylesheet" href="../../css/main.css">
+
+</head>
+<body class="dark">
+<div id="progress"><em>Loading...</em></div>
+
+
+<template id="progressbar-template">
+    <style>
+        :host-context(.dark) .value {
+            background-color: gray;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 50px;
+            position: relative;
+        }
+
+        .value {
+            height: 100%;
+            background-color: #f6ba52;
+        }
+
+        .label {
+            text-align: center;
+            line-height: 50px;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+        }
+
+        .description {
+            text-align: center  ;
+        }
+    </style>
+
+    <div class="progress">
+        <div class="progress-bar">
+            <div class="label"></div>
+            <div class="value"></div>
+        </div>
+        <div class="description"><content></content></div>
+    </div>
+</template>
+
+<script>
+    var host = document.querySelector('#progress');
+    var root = host.createShadowRoot();
+    var template = document.querySelector('#progressbar-template');
+
+    var content = template.content.cloneNode(true);
+    content.querySelector('.value').style.width = '50%';
+    content.querySelector('.label').innerText = '50%';
+
+    root.appendChild(content);
+
+</script>
+
+</body>
+</html>

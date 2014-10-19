@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>HTML Templates</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="../../css/normalize.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="templates.css">
+</head>
+<body>
+
+<button>Add Template</button><br />
+<label for="name">Name</label><input id="name" type="text" /><br />
+<em>Coffee by Jordan Díaz Andrés from The Noun Project</em>
+
+<template id="template">
+    <p>Hello, <strong></strong></p>
+    <img src= "test.jpg" />
+</template>
+
+<script type="text/javascript">
+    document.querySelector('button').addEventListener('click', function() {
+       addTemplate(document.querySelector('#name').value);
+    });
+
+    function addTemplate(name) {
+        var temp = document.querySelector("#template");
+        var clone = temp.content.cloneNode(true);
+        clone.querySelector("strong").innerHTML = name;
+        clone.querySelector("img").src="avatar.png";
+        document.body.appendChild(clone);
+    }
+
+</script>
+
+
+</body>
+</html>
